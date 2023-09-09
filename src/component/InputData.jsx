@@ -8,27 +8,33 @@ import { addFlight } from '../redux/actions';
 const InputData = () => {
     const dispatch = useDispatch()
     const flightId = useSelector(state => state.length + 1)
-    // console.log(data)
     const [values, setValues] = useState({})
 
     const handleChange = (e) => {
         const value = e.target.value;
-        
+        // adding input data to state
         setValues({ ...values, [e.target.name]: value, id: flightId })
-        // console.log(e.target.name)
+
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        // disabled button if flight more than 3
         if (flightId <= 3) {
+            // Check from and destination. If from and destination same than display a warning
+            if (values.from !== values.to) {
 
-            dispatch(addFlight(values))
+                dispatch(addFlight(values))
+            } else {
+                alert(`You can't add Same location`)
+            }
+
         } else {
             alert(`You can't add more then 3 flight`)
         }
+
     }
 
-    // console.log(values)
     return (
         // Input Data
         <div className="mt-[160px] mx-4 md:mt-[160px] relative">
