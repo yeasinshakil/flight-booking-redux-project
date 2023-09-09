@@ -5,19 +5,23 @@ import vector3 from '../img/icons/Vector (3).svg'
 
 const InputData = () => {
     const [values, setValues] = useState({
-        dastinationFrom: '',
-        destinationTo: '',
+        from: '',
+        to: '',
         date: '',
-        guest: '',
-        flightClass: '',
-    })
+        ticketclassNames: '',
+        guests: '',
+      });
 
     const handleChange =(e)=> {
         e.preventDefault();
         const value = e.target.value;
-        console.log('submit', value)
+        setValues({
+            ...values,
+            [e.target.name]: value,
+        })
 
     }
+    console.log(values)
 
     return (
         // Input Data
@@ -29,7 +33,7 @@ const InputData = () => {
                         <p>Destination From</p>
                         <div className="flex flex-row">
                             <img src={locationIcon} alt="" />
-                            <select className="outline-none px-2 py-2 w-full" name="from" id="lws-from" required onClick={handleChange}>
+                            <select className="outline-none px-2 py-2 w-full" name="from" id="lws-from" required onChange={handleChange}>
                                 <option value="" hidden>Please Select</option>
                                 <option>Dhaka</option>
                                 <option>Sylhet</option>
@@ -44,7 +48,7 @@ const InputData = () => {
                         <p>Destination To</p>
                         <div className="flex flex-row">
                             <img src={locationIcon} alt="" />
-                            <select className="outline-none px-2 py-2 w-full" name="to" id="lws-to" required onClick={handleChange}>
+                            <select className="outline-none px-2 py-2 w-full" name="to" id="lws-to" required onChange={handleChange}>
                                 <option value="" hidden>Please Select</option>
                                 <option>Dhaka</option>
                                 <option>Sylhet</option>
@@ -57,7 +61,7 @@ const InputData = () => {
                     {/* <!-- Date --> */}
                     <div className="des-from">
                         <p>Journey Date</p>
-                        <input type="date" className="outline-none px-2 py-2 w-full date" name="date" id="lws-date" required onClick={handleChange} />
+                        <input type="date" className="outline-none px-2 py-2 w-full date" name="date" id="lws-date" required onChange={handleChange} />
                     </div>
 
                     {/* <!-- Guests --> */}
@@ -65,7 +69,7 @@ const InputData = () => {
                         <p>Guests</p>
                         <div className="flex flex-row">
                             <img src={vector1} alt="" />
-                            <select className="outline-none px-2 py-2 w-full" name="guests" id="lws-guests" required onClick={handleChange}>
+                            <select className="outline-none px-2 py-2 w-full" name="guests" id="lws-guests" required onChange={handleChange}>
                                 <option value="" hidden>Please Select</option>
                                 <option value="1">1 Person</option>
                                 <option value="2">2 Persons</option>
@@ -80,7 +84,7 @@ const InputData = () => {
                         <p>className</p>
                         <div className="flex flex-row">
                             <img src={vector3} alt="" />
-                            <select className="outline-none px-2 py-2 w-full" name="ticketclassName" id="lws-ticketclassName" required onClick={handleChange}>
+                            <select className="outline-none px-2 py-2 w-full" name="ticketclassName" id="lws-ticketclassName" required onChange={handleChange}>
                                 <option value="" hidden>Please Select</option>
                                 <option>Business</option>
                                 <option>Economy</option>
