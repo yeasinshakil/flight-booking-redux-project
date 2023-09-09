@@ -1,14 +1,14 @@
-import { ADDBOOKING, DELETEBOOKING } from "./actionIdentifier"
+import { ADD_BOOKING, DELETE_BOOKING } from "./actionIdentifier"
 
 export const addFlight = (data) => {
     return {
-        type: ADDBOOKING,
-        payload: data,
+        type: ADD_BOOKING,
+        payload: data
     }
 }
-export const deleteFligh = (data) => {
+export const deleteFlight = (data) => {
     return {
-        type: DELETEBOOKING,
-        payload: data,
+        type: DELETE_BOOKING,
+        payload: data
     }
 }

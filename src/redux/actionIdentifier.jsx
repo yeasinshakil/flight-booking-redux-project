@@ -1,2 +1,4 @@
-export const ADDBOOKING = 'booking/add';
-export const DELETEBOOKING = 'booking/booking';
+
+
+export const ADD_BOOKING = 'booking/add';
+export const DELETE_BOOKING = 'booking/delete';

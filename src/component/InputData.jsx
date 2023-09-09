@@ -2,32 +2,38 @@ import React, { useState } from 'react';
 import locationIcon from '../img/icons/Frame.svg'
 import vector1 from '../img/icons/Vector (1).svg'
 import vector3 from '../img/icons/Vector (3).svg'
+import { useDispatch, useSelector } from 'react-redux';
+import { addFlight } from '../redux/actions';
 
 const InputData = () => {
-    const [values, setValues] = useState({
-        from: '',
-        to: '',
-        date: '',
-        ticketclassNames: '',
-        guests: '',
-      });
+    const dispatch = useDispatch()
+    const flightId = useSelector(state => state.length + 1)
+    // console.log(data)
+    const [values, setValues] = useState({})
 
-    const handleChange =(e)=> {
-        e.preventDefault();
+    const handleChange = (e) => {
         const value = e.target.value;
-        setValues({
-            ...values,
-            [e.target.name]: value,
-        })
-
+        
+        setValues({ ...values, [e.target.name]: value, id: flightId })
+        // console.log(e.target.name)
     }
-    console.log(values)
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (flightId <= 3) {
+
+            dispatch(addFlight(values))
+        } else {
+            alert(`You can't add more then 3 flight`)
+        }
+    }
+
+    // console.log(values)
     return (
         // Input Data
         <div className="mt-[160px] mx-4 md:mt-[160px] relative">
             <div className="bg-white rounded-md max-w-6xl w-full mx-auto">
-                <form className="first-hero lws-inputform">
+                <form className="first-hero lws-inputform" onSubmit={handleSubmit}>
                     {/* <!-- From --> */}
                     <div className="des-from">
                         <p>Destination From</p>
@@ -93,8 +99,8 @@ const InputData = () => {
                     </div>
 
                     <button className="addCity" type="submit" id="lws-addCity">
-                        <svg width="15px" height="15px" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        <svg width="15px" height="15px" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                         </svg>
                         <span className="text-sm">Book</span>
                     </button>
